@@ -1,0 +1,22 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+file_path = r'C:\Users\91894\Downloads\Dataset .csv'
+df = pd.read_csv(file_path)
+
+highest_votes_restaurant = df.loc[df['Votes'].idxmax()]
+
+lowest_votes_restaurant = df.loc[df['Votes'].idxmin()]
+
+print("Restaurant with the highest number of votes:")
+print(highest_votes_restaurant)
+
+print("\nRestaurant with the lowest number of votes:")
+print(lowest_votes_restaurant)
+
+sns.scatterplot(x='Votes', y='Aggregate rating', data=df)
+plt.title('Correlation between Votes and Aggregate rating')
+plt.xlabel('Votes')
+plt.ylabel('Aggregate rating')
+plt.show()
