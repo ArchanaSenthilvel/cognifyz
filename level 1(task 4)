@@ -1,0 +1,26 @@
+import pandas as pd
+
+file_path = r'C:\Users\91894\Downloads\Dataset .csv'
+df = pd.read_csv(file_path)
+
+print(df.head())
+
+print(df.columns)
+
+if 'Has Online delivery' in df.columns:
+    total_restaurants = len(df)
+    restaurants_with_delivery = len(df[df['Has Online delivery'] == 'yes'])
+    percentage_with_delivery = (restaurants_with_delivery / total_restaurants) * 100
+
+    print(f"Percentage of restaurants with online delivery: {percentage_with_delivery:.2f}%")
+else:
+    print("No 'online_delivery' column found in the dataset.")
+
+if 'Aggregate rating' in df.columns:
+    average_rating_with_delivery = df[df['Has Online delivery'] == 'yes']['Aggregate rating'].mean()
+    average_rating_without_delivery = df[df['Has Online delivery'] == 'no']['Aggregate rating'].mean()
+
+    print(f"Average rating of restaurants with online delivery: {average_rating_with_delivery:.2f}")
+    print(f"Average rating of restaurants without online delivery: {average_rating_without_delivery:.2f}")
+else:
+    print("No 'rating' column found in the dataset.")
