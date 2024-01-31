@@ -1,0 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+file_path = r'C:\Users\91894\Downloads\Dataset .csv'
+df = pd.read_csv(file_path)
+
+price_ranges = df['Price range'].unique()
+
+price_percentage = df['Price range'].value_counts(normalize=True) * 100
+print(price_percentage)
+
+plt.bar(price_percentage.index, price_percentage.values, color='skyblue')
+plt.xlabel('Price Range')
+plt.ylabel('Percentage of Restaurants')
+plt.title('Distribution of Price Ranges Among Restaurants')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+plt.show()
